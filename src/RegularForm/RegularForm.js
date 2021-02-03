@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import './RegularForm.scss'
 
 export default function RegularForm() {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, errors, formState } = useForm({ mode: "onChange" });
   const password = useRef({});
   password.current = watch("password");
   const onSubmit = data => console.log(data);
@@ -20,7 +20,7 @@ export default function RegularForm() {
       </p>
       <p>
         <label htmlFor="password" className="floatLabel">Password</label>
-        <input id="password" name="password" type="password" ref={register({ required: true })} />
+        <input id="password" name="password" type="password" ref={register({ required: true, minLength: 8 })} />
         {errors.password && <span>Enter a password longer than 8 characters</span>}
       </p>
       <p>
@@ -29,7 +29,7 @@ export default function RegularForm() {
         {errors.confirm_password && <span>Your passwords do not match</span>}
       </p>
       <p>
-        <input type="submit" value="Create My Account" id="submit" />
+        <input type="submit" value="Create My Account" id="submit" disabled={!formState.isValid} />
       </p>
     </form>
   )

@@ -72,7 +72,10 @@ $button: rgba(148, 186, 101, 0.7);
     text-shadow: 0 1px 3px darken($button, 30%);
   }
 
-  input[type="submit"]:hover {}
+  input[type="submit"]:disabled {
+    background: rgba(148, 175, 101, 1);
+    text-shadow: 0 1px 3px darken($button, 30%);
+  }
 
   label {
     position: absolute;
